@@ -1,28 +1,37 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-import Botao from './Botao';
 
-function App() {
+export default function App() {
+  const [firstNumber, setFirstNumber] = useState(0);
+  const [secondNumber, setSecondNumber] = useState(0);
+  const [result, setResult] = useState(0);
+
   return (
     <>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Botao></Botao>
-          <p>Meu primeiro projeto</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <h1>Calculator</h1>
+      <div className="card">
+        <label>
+          First Number
+          <input
+            value={firstNumber}
+            onChange={(e) => setFirstNumber(Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Second Number
+          <input
+            value={secondNumber}
+            onChange={(e) => setSecondNumber(Number(e.target.value))}
+          />
+        </label>
+        <span>Result: {result}</span>
       </div>
-      <div>asdf</div>
+      <button onClick={() => setResult(firstNumber + secondNumber)}>+</button>
+      <button onClick={() => setResult(firstNumber - secondNumber)}>-</button>
+      <button onClick={() => setResult(firstNumber * secondNumber)}>*</button>
+      <button onClick={() => setResult(firstNumber / secondNumber)}>/</button>
     </>
-  )
+  );
 }
 
-export default App;
+
